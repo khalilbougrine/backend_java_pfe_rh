@@ -1,7 +1,8 @@
-package com.example.monapp.rh.service;
+package com.example.monapp.rh.service.classes;
 
 import com.example.monapp.rh.model.FichePoste;
 import com.example.monapp.rh.repository.FichePosteRepository;
+import com.example.monapp.rh.service.interfaces.FichePosteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

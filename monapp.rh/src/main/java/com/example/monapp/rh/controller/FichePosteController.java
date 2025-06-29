@@ -1,7 +1,7 @@
 package com.example.monapp.rh.controller;
 
 import com.example.monapp.rh.model.FichePoste;
-import com.example.monapp.rh.service.FichePosteService;
+import com.example.monapp.rh.service.interfaces.FichePosteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

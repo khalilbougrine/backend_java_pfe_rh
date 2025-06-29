@@ -1,7 +1,8 @@
-package com.example.monapp.rh.service;
+package com.example.monapp.rh.service.classes;
 
 import com.example.monapp.rh.model.FicheCandidat;
 import com.example.monapp.rh.repository.FicheCandidatRepository;
+import com.example.monapp.rh.service.interfaces.FicheCandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

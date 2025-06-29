@@ -1,7 +1,7 @@
 package com.example.monapp.rh.controller;
 
 import com.example.monapp.rh.model.FicheCandidat;
-import com.example.monapp.rh.service.FicheCandidatService;
+import com.example.monapp.rh.service.interfaces.FicheCandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

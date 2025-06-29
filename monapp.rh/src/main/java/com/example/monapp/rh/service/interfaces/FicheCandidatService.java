@@ -1,4 +1,4 @@
-package com.example.monapp.rh.service;
+package com.example.monapp.rh.service.interfaces;
 
 import com.example.monapp.rh.model.FicheCandidat;
 

@@ -57,13 +57,7 @@ public class FicheCandidat {
 
     private Boolean image;
 
-    private Float matchingScore;
 
-    @Column(columnDefinition = "JSON")
-    private String missingSkills;
-
-    @Column(columnDefinition = "TEXT")
-    private String resumeSummary;
 
     @Column(name = "created_at", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
@@ -212,29 +206,6 @@ public class FicheCandidat {
         this.image = image;
     }
 
-    public Float getMatchingScore() {
-        return matchingScore;
-    }
-
-    public void setMatchingScore(Float matchingScore) {
-        this.matchingScore = matchingScore;
-    }
-
-    public String getMissingSkills() {
-        return missingSkills;
-    }
-
-    public void setMissingSkills(String missingSkills) {
-        this.missingSkills = missingSkills;
-    }
-
-    public String getResumeSummary() {
-        return resumeSummary;
-    }
-
-    public void setResumeSummary(String resumeSummary) {
-        this.resumeSummary = resumeSummary;
-    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

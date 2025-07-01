@@ -10,4 +10,6 @@ public interface FichePosteService {
     FichePoste getById(Long id);
     FichePoste update(Long id, FichePoste fiche);
     void delete(Long id);
+
+    FichePoste saveFileOnly(String nomFichier, String typeFichier);
 }

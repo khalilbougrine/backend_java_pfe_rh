@@ -3,6 +3,8 @@ package com.example.monapp.rh.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -33,6 +35,37 @@ public class FichePoste {
 
     @Column(columnDefinition = "TEXT")
     private String autresInformations;
+
+
+    private String nomFichier;
+    private String typeFichier;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    public String getNomFichier() {
+        return nomFichier;
+    }
+
+    public void setNomFichier(String nomFichier) {
+        this.nomFichier = nomFichier;
+    }
+
+    public String getTypeFichier() {
+        return typeFichier;
+    }
+
+    public void setTypeFichier(String typeFichier) {
+        this.typeFichier = typeFichier;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;

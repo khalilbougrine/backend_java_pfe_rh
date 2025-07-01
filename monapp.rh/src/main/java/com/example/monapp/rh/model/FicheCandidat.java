@@ -55,8 +55,16 @@ public class FicheCandidat {
     @Column(columnDefinition = "JSON")
     private String interests;
 
+
+
+
     private Boolean image;
 
+    @Column(name = "nom_fichier", length = 255)
+    private String nomFichier;
+
+    @Column(name = "type_fichier", length = 100)
+    private String typeFichier;
 
 
     @Column(name = "created_at", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -204,6 +212,21 @@ public class FicheCandidat {
 
     public void setImage(Boolean image) {
         this.image = image;
+    }
+    public String getNomFichier() {
+        return nomFichier;
+    }
+
+    public void setNomFichier(String nomFichier) {
+        this.nomFichier = nomFichier;
+    }
+
+    public String getTypeFichier() {
+        return typeFichier;
+    }
+
+    public void setTypeFichier(String typeFichier) {
+        this.typeFichier = typeFichier;
     }
 
 

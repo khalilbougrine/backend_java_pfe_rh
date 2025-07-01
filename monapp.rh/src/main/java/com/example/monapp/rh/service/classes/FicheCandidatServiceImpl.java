@@ -3,10 +3,12 @@ package com.example.monapp.rh.service.classes;
 import com.example.monapp.rh.model.FicheCandidat;
 import com.example.monapp.rh.repository.FicheCandidatRepository;
 import com.example.monapp.rh.service.interfaces.FicheCandidatService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FicheCandidatServiceImpl implements FicheCandidatService {
@@ -39,4 +41,42 @@ public class FicheCandidatServiceImpl implements FicheCandidatService {
     public void deleteFiche(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public FicheCandidat insertFromMap(Map<String, Object> data) {
+        FicheCandidat fiche = new FicheCandidat();
+
+        fiche.setName((String) data.get("name"));
+        fiche.setEmail((String) data.get("email"));
+        fiche.setPhone((String) data.get("phone"));
+        fiche.setAddress((String) data.get("address"));
+        fiche.setBirthdate((String) data.get("birthdate"));
+        fiche.setLinkedin((String) data.get("linkedin"));
+        fiche.setGithub((String) data.get("github"));
+        fiche.setResumeTitle((String) data.get("resume_title"));
+        fiche.setProfil((String) data.get("profil"));
+
+        fiche.setSkills(toJson(data.get("skills")));
+        fiche.setEducation(toJson(data.get("education")));
+        fiche.setExperience(toJson(data.get("experience")));
+        fiche.setProjects(toJson(data.get("projects")));
+        fiche.setCertifications(toJson(data.get("certifications")));
+        fiche.setLanguages(toJson(data.get("languages")));
+        fiche.setInterests(toJson(data.get("interests")));
+
+        fiche.setImage(Boolean.TRUE.equals(data.get("image")));
+        fiche.setNomFichier((String) data.get("nom_fichier"));
+        fiche.setTypeFichier((String) data.get("type_fichier"));
+
+        return repository.save(fiche);
+    }
+
+    private String toJson(Object value) {
+        try {
+            return new ObjectMapper().writeValueAsString(value);
+        } catch (Exception e) {
+            return "[]";
+        }
+    }
+
 }

@@ -68,6 +68,10 @@ public class FicheCandidatServiceImpl implements FicheCandidatService {
         fiche.setNomFichier((String) data.get("nom_fichier"));
         fiche.setTypeFichier((String) data.get("type_fichier"));
 
+// ✅ Ajout du champ image_url si présent dans le JSON
+        fiche.setImageUrl((String) data.get("image_url"));
+
+
         return repository.save(fiche);
     }
 

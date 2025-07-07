@@ -81,6 +81,32 @@ public class FicheCandidatController {
                 result.put("nom_fichier", file.getOriginalFilename());
                 result.put("type_fichier", file.getContentType());
 
+                // 👉 Upload image sur MinIO via l'API FastAPI
+                try {
+                    HttpHeaders uploadHeaders = new HttpHeaders();
+                    uploadHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+                    MultiValueMap<String, Object> uploadBody = new LinkedMultiValueMap<>();
+                    uploadBody.add("file", new FileSystemResource(tempFile));
+
+                    HttpEntity<MultiValueMap<String, Object>> uploadRequest =
+                            new HttpEntity<>(uploadBody, uploadHeaders);
+
+                    // ✅ Ajout du paramètre filename dans l’URL
+                    String uploadUrl = "http://127.0.0.1:8000/upload-cv-image/?filename=" + file.getOriginalFilename();
+
+                    ResponseEntity<Map> uploadResponse =
+                            new RestTemplate().postForEntity(uploadUrl, uploadRequest, Map.class);
+
+                    if (uploadResponse.getStatusCode().is2xxSuccessful() && uploadResponse.getBody() != null) {
+                        String imageUrl = uploadResponse.getBody().get("url").toString(); // clé = "url" dans ta FastAPI
+                        result.put("image_url", imageUrl);
+                    } else {
+                        System.err.println("❌ Erreur upload MinIO : " + uploadResponse.getStatusCode());
+                    }
+                } catch (Exception ex) {
+                    System.err.println("❌ Exception upload MinIO : " + ex.getMessage());
+                }
+
                 // Insère dans MySQL
                 ficheCandidatService.insertFromMap(result);
 
